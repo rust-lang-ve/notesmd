@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{ApplicationWindow, Box,  Orientation, Paned};
+use gtk::{ApplicationWindow, Box,  Orientation, Paned, TextView};
 
 use crate::layout::{Edit, View};
 
@@ -7,7 +7,7 @@ pub fn build_ui(application: &gtk::Application) {
   let window: ApplicationWindow = ApplicationWindow::new(application);
 
   let paned: Paned = Paned::new(Orientation::Horizontal);
-  let edit: Box = Edit::get_box();
+  let edit: TextView = Edit::get_box();
   let view: Box = View::get_box();
 
   paned.add1(&edit);

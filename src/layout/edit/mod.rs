@@ -1,16 +1,16 @@
 use gdk;
 use gtk::prelude::*;
-use gtk::{Box, Orientation};
+use gtk::{Box, Orientation, TextView};
 
 mod style;
 
 pub struct Edit;
 
 impl Edit {
-  pub fn get_box() -> Box {
+  pub fn get_box() -> TextView {
     let provider = gtk::CssProvider::new();
     // let edit: Box = builder.get_object("edit").expect("Couldn't get edit");
-    let edit: Box = Box::new(Orientation::Vertical, 0);
+    let edit: TextView = TextView::new();
 
     provider.load_from_data(style::EDIT_STYLE.as_bytes())
       .expect("Failed to load EDIT CSS");

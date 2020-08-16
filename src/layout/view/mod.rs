@@ -8,7 +8,6 @@ pub struct View;
 impl View {
   pub fn get_box() -> Box {
     let provider = gtk::CssProvider::new();
-    // let view: Box = builder.get_object("view").expect("Couldn't get view");
     let view = Box::new(Orientation::Vertical, 0);
 
     provider.load_from_data(style::VIEW_STYLE.as_bytes())

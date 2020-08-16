@@ -12,11 +12,15 @@ impl Edit {
     let edit: TextView = TextView::new();
 
     if let Some(buff) = edit.get_buffer() {
-      buff.connect_insert_text(|buff, text_iter, text| {
-        let start = edit.get_iter_at_position(0, 0).unwrap().0;
-        let full_text = buff.get_text(&start, text_iter, true).unwrap();
+      let edit = edit.clone();
 
-        println!("{} {}", text,  full_text.to_string());
+      buff.connect_insert_text(move |buff, text_iter, text| {
+        if let Some(start) = edit.get_iter_at_position(0, 0) {
+          let start = start.0;
+          let full_text = buff.get_text(&start, text_iter, true).unwrap();
+
+          println!("{} {}", text,  full_text.to_string());
+        }
       });
     }
 

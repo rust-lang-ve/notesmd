@@ -6,6 +6,7 @@ use gio::prelude::*;
 
 use gtk::Application;
 
+mod core;
 mod layout;
 
 fn main() {
@@ -14,7 +15,7 @@ fn main() {
     Default::default(),
   ).expect("Failed to initialize NotesMD");
 
-  application.connect_activate(|app| {
+  application.connect_activate(move |app| {
     layout::build_ui(app);
   });
 

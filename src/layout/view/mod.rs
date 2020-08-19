@@ -1,3 +1,4 @@
+use crate::core::NotesMD;
 use gtk::prelude::*;
 use gtk::{Box, Orientation};
 
@@ -10,7 +11,8 @@ impl View {
     let provider = gtk::CssProvider::new();
     let view = Box::new(Orientation::Vertical, 0);
 
-    provider.load_from_data(style::VIEW_STYLE.as_bytes())
+    provider
+      .load_from_data(style::VIEW_STYLE.as_bytes())
       .expect("Failed to load VIEW CSS");
 
     gtk::StyleContext::add_provider_for_screen(

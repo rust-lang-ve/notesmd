@@ -1,5 +1,4 @@
 use crate::core::Sheet;
-use std::borrow::Cow;
 
 pub struct NotesMD {
   pub sheets: Vec<Sheet>,
@@ -18,17 +17,19 @@ impl NotesMD {
     self.sheets.push(sheet);
   }
 
-  pub fn write(&mut self, index: usize, text: String) -> Option<String> {
-    if let Some(sheet) = self.sheets.get_mut(index) {
-      let sheet = sheet;
+  pub fn write(&self, index: usize, text: String) -> Option<String> {
+    // if let Some(sheet) = self.sheets.get_mut(index) {
+    //   let sheet = sheet;
       
-      sheet.write(text);
+    //   sheet.write(text);
       
-      let final_text = sheet.raw_value.clone();
+    //   let final_text = sheet.raw_value.clone();
 
-      Some(final_text)
-    } else {
-      None
-    }
+    //   Some(final_text)
+    // } else {
+    //   None
+    // }
+    println!("{}", text);
+    Some(text)
   }
 }

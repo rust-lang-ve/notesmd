@@ -15,6 +15,10 @@ fn main() {
     Default::default(),
   ).expect("Failed to initialize NotesMD");
 
+  unsafe {
+    application.set_data("notesmd", core::NotesMD::new());
+  }
+
   application.connect_activate(move |app| {
     layout::build_ui(app);
   });

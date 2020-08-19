@@ -9,21 +9,24 @@ mod style;
 pub struct Edit;
 
 impl Edit {
-  pub fn get_box(mut notesmd: NotesMD) -> TextView {
+  pub fn get_box(app: &gtk::Application) -> TextView {
     let provider = gtk::CssProvider::new();
     let edit: TextView = TextView::new();
 
     if let Some(buff) = edit.get_buffer() {
       let edit = edit.clone();
-
-      notesmd.write(0, "Hello".to_string());
+      let app = app.clone();
 
       buff.connect_insert_text(move |buff, text_iter, _| {
         if let Some(start) = edit.get_iter_at_position(0, 0) {
           let start = start.0;
           let full_text = buff.get_text(&start, text_iter, true).unwrap();
-        
-          &notesmd.write(0, full_text.to_string());
+
+          unsafe {
+            if let Some(notesmd) = app.get_data::<NotesMD>("notesmd") {
+              notesmd.write(0, full_text.to_string());
+            }
+          }
         }
       });
     }

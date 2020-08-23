@@ -1,7 +1,9 @@
-mod edit;
-mod view;
 mod build_ui;
+mod edit;
+mod toolbar;
+mod view;
 
-pub use edit::*;
-pub use view::*;
 pub use build_ui::*;
+pub use edit::*;
+pub use toolbar::*;
+pub use view::*;

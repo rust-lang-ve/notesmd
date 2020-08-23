@@ -10,18 +10,17 @@ mod core;
 mod layout;
 
 fn main() {
-  let application = Application::new(
-    Some("com.github.rust-lang-ve.notes-md"),
-    Default::default(),
-  ).expect("Failed to initialize NotesMD");
+    let application =
+        Application::new(Some("com.github.rust-lang-ve.notes-md"), Default::default())
+            .expect("Failed to initialize NotesMD");
 
-  unsafe {
-    application.set_data("notesmd", core::NotesMD::new());
-  }
+    unsafe {
+        application.set_data("notesmd", core::NotesMD::new());
+    }
 
-  application.connect_activate(move |app| {
-    layout::build_ui(app);
-  });
+    application.connect_activate(move |app| {
+        layout::build_ui(app);
+    });
 
-  application.run(&[]);
+    application.run(&[]);
 }
